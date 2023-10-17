@@ -1,4 +1,5 @@
 import logo from "../../assets/logo.jpg";
+import Button from '@mui/material/Button';
 import user from "../../assets/user.png";
 import classes from "./Header.module.css";
 import { AuthContext } from "../../store/Auth-context";
@@ -21,14 +22,18 @@ function Header() {
         {isLoggedIn && <img className={classes.userimg} src={user} alt="" />}
 
         {isLoggedIn && (
-          <button
-            onClick={() => {
-              handleSignOut(false);
-            }}
-            className={classes.signout}
-          >
-            sign out
-          </button>
+          // <button
+          //   onClick={() => {
+          //     handleSignOut(false);
+          //   }}
+          //   className={classes.signout}
+          // >
+          //   sign out
+          // </button>
+          <Button onClick={() => {
+            handleSignOut(false);
+          }}
+            className={classes.signout} variant="contained">sign out</Button>
         )}
       </div>
     </header>

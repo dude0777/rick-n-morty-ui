@@ -1,10 +1,18 @@
-
+import Grid from "@mui/system/Unstable_Grid/Grid";
+import Box from "@mui/material/Box";
+import TextField from '@mui/material/TextField';
 import CharacterItem from "./CharacterItem/CharacterItem";
 import classes from "./CharacterList.module.css";
 import { getFilteredCharacters } from "../../../services/filter";
 import { useState, useEffect } from "react";
 import { AuthContext } from "../../../store/Auth-context";
 import { useContext } from "react";
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { borderRadius, padding } from "@mui/system";
 
 function CharacterList() {
   const [receivedCharacters, setReceivedCharacters] = useState([]);
@@ -29,10 +37,20 @@ function CharacterList() {
   console.log(page)
 
   const handleStatussChange = (e) => {
-    setStatuss(e.target.value)
+    if (e.target.value === 'All') {
+      setStatuss('')
+    }
+    else {
+      setStatuss(e.target.value)
+    }
   }
   const handleGenderChange = (e) => {
-    setGender(e.target.value)
+    if (e.target.value === 'All') {
+      setGender('')
+    }
+    else {
+      setGender(e.target.value)
+    }
   }
   const handleNameChange = (e) => {
     setName(e.target.value)
@@ -50,22 +68,70 @@ function CharacterList() {
   console.log(receivedCharacters);
   return (
     <div className={classes.container}>
-      <div className={classes.container2}>
-        <input className={classes.inputt} type="text" onChange={handleNameChange} />
-        <select className={classes.inputt} value={statuss} name="" id="" onChange={handleStatussChange}>
-          <option value="Alive">Alive</option>
-          <option value="Dead">Dead</option>
-          <option value="unknown">unknown</option>
+
+      <Box sx={{
+        bgcolor: '#ea80fc',
+        padding: 3,
+        color: "black",
+        boxShadow: 1,
+        borderRadius: 2,
+        p: 2,
+        width: '70%',
+      }}>
+        <Grid justifyContent={"center"} alignItems={'center'} container spacing={8}>
+
+          <Grid item xs={12} md={4}>
+            <FormControl fullWidth>
+              <TextField
+                onChange={handleNameChange} type="text" id="outlined-basic"
+                sx={{ color: "black" }} label="Character Name"
+                variant="outlined" />
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={4} >
+            <FormControl fullWidth>
+              <InputLabel sx={{ color: 'black' }} id="demo-simple-select-label">Gender</InputLabel>
+              <Select sx={{ color: 'black' }} value={gender} onChange={handleGenderChange}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+
+                label="Age"
+
+              >
+
+                <MenuItem value="All">All</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Genderless">Genderless</MenuItem>
+                <MenuItem value="unknown">unknown</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <FormControl fullWidth>
+              {/* formcontrol */}
+              <InputLabel sx={{ color: 'black' }} id="demo-simple-select-label">Status</InputLabel>
+              <Select sx={{ color: 'black' }} value={statuss} onChange={handleStatussChange}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+
+                label="Age"
+
+              >    <MenuItem value="All">All</MenuItem>
+                <MenuItem value="Alive">Alive</MenuItem>
+                <MenuItem value="Dead">Dead</MenuItem>
+
+                <MenuItem value="unknown">unknown</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+      </Box>
 
 
-        </select>
-        <select className={classes.inputt} name="" value={gender} id="" onChange={handleGenderChange} >
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-          <option value="Genderless">Genderless</option>
-          <option value="unknown">unknown</option>
-        </select>
-      </div>
+
+
+
       <div className={classes.container3}>
         {receivedCharacters.map((character) => {
           return (

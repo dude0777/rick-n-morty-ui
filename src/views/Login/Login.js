@@ -1,4 +1,5 @@
 import classes from "./Login.module.css";
+import TextField from '@mui/material/TextField'
 import { useContext } from "react";
 import { useRef } from "react";
 import { AuthContext } from "../../store/Auth-context";
@@ -35,32 +36,35 @@ function Login() {
         <div className={classes.formcont}>
           <div className={classes.inputcont}>
             <div className={classes.userbox}>
-              <input ref={emailRef}
+              {/* <input ref={emailRef}
                 onChange={handleUserNameChange}
                 className={classes.forminput}
-              />
-              <label>Email</label>
+              /> */}
+              <TextField ref={emailRef}
+                onChange={handleUserNameChange}
+                id="standard-basic"
+                label="Email"
+                variant="standard" />
+
             </div>
             <div className={classes.userbox}>
-              <input
+              {/* <input
                 type="password"
                 onChange={handlePasswordChange}
                 className={classes.forminput}
+              /> */}
+              <TextField sx={{ color: "white" }}
+                type="password"
+                onChange={handlePasswordChange}
+                id="standard-basic"
+                label="Password"
+                variant="standard"
               />
-              <label>Password</label>
+
             </div>
           </div>
           <div>
-            {/* <button type="submit" className={classes.add}>
-              Login
-            </button> */}
-            {/* <a type="submit" href={"#"}>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Login
-            </a> */}
+
 
             <button className={classes.button1} type="submit">
               <span></span>

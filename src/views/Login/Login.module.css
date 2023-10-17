@@ -40,10 +40,8 @@
 }
 
 .forminput {
-  width: 20rem;
-  padding: 1rem;
-  border-radius: 12px;
-  border: none;
+  color: white;
+  border: white;
 }
 
 @media screen and (max-width: 760px) {
@@ -78,7 +76,7 @@
   position: relative;
 }
 
-.userbox input {
+/* .userbox input {
   width: 100%;
   padding: 1rem;
   font-size: 16px;
@@ -89,8 +87,8 @@
   border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
-}
-.userbox label {
+} */
+/* .userbox label {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,15 +97,15 @@
   color: #fff;
   pointer-events: none;
   transition: 0.5s;
-}
+} */
 
-.userbox input:focus ~ label,
+/* .userbox input:focus ~ label,
 .userbox input:valid ~ label {
   top: -20px;
   left: 0;
   color: #dd37de;
   font-size: 12px;
-}
+} */
 
 form .button1 {
   position: relative;

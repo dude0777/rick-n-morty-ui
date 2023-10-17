@@ -1,3 +1,6 @@
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 import "./App.css";
 import { AuthContext } from "./store/Auth-context";
 import Main from "./views/Main/Main";
@@ -7,6 +10,19 @@ import { useState } from "react";
 import Login from "./views/Login/Login";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        light: '#ea80fc',
+        main: '#ea80fc',
+        dark: '#ee99fc',
+        contrastText: '#fff',
+      }
+    },
+  });
 
   const handleIsLoggedIn = ({ userName, password }) => {
     if (userName !== "" && password !== "") {
@@ -27,12 +43,16 @@ function App() {
     <>
       <AuthContext.Provider
         value={{ isLoggedIn, userName, handleIsLoggedIn, handleSignOut }}
-      >
-        <Header />
+      ><ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Header />
 
-        {!isLoggedIn && <Login />}
+          {!isLoggedIn && <Login />}
 
-        <Main />
+          <Main />
+
+
+        </ThemeProvider>
       </AuthContext.Provider>
     </>
   );
