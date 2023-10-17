@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { AuthContext } from "./store/Auth-context";
+import Main from "./views/Main/Main";
 
+import Header from "./views/Header/Header";
+import { useState } from "react";
+import Login from "./views/Login/Login";
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleIsLoggedIn = ({ userName, password }) => {
+    if (userName !== "" && password !== "") {
+      if (userName.includes("@") && password.length >= 7) {
+        setIsLoggedIn(true);
+      }
+    }
+  };
+
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+  };
+
+  console.log(isLoggedIn);
+  const userName = "Alen";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthContext.Provider
+        value={{ isLoggedIn, userName, handleIsLoggedIn, handleSignOut }}
+      >
+        <Header />
+
+        {!isLoggedIn && <Login />}
+
+        <Main />
+      </AuthContext.Provider>
+    </>
   );
 }
 

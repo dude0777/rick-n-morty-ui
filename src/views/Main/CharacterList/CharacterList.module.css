@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 6rem;
+  align-items: center;
+  justify-content: center;
+}
+.container2 {
+  border-radius: 10px;
+  background-color: #dd37de;
+  padding: 1rem;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+.inputt {
+  padding: 0.5rem;
+}
+.container3 {
+  display: flex;
+  flex-wrap: wrap;
+}
